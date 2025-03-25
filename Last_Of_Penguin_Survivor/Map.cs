@@ -8,18 +8,18 @@ public class Map
 {
 	private MapSettingManager mapSettingManager;
 
-	private Chunk[,] groundChunks;
-	private Chunk[,] waterChunks;
+	private Chunk[,]          groundChunks;
+	private Chunk[,]          waterChunks;
 
-	// ÀÌÀü ÇÁ·¹ÀÓ¿¡ È°¼ºÈ­ µÇ¾ú´ø Ã»Å© ¸ñ·Ï
-	private List<Chunk> prevActiveChunkList    = new List<Chunk>();
-	// ÇöÀç ÇÁ·¹ÀÓ¿¡ È°¼ºÈ­µÈ Ã»Å© ¸ñ·Ï
-	private List<Chunk> currentActiveChunkList = new List<Chunk>();
+	// ì´ì „ í”„ë ˆì„ì— í™œì„±í™” ë˜ì—ˆë˜ ì²­í¬ ëª©ë¡
+	private List<Chunk>       prevActiveChunkList    = new List<Chunk>();
+	// í˜„ì¬ í”„ë ˆì„ì— í™œì„±í™”ëœ ì²­í¬ ëª©ë¡
+	private List<Chunk>       currentActiveChunkList = new List<Chunk>();
 
-	// ÇÃ·¹ÀÌ¾îÀÇ ÀÌÀü ÇÁ·¹ÀÓ À§Ä¡
-	private Vector2  prevPlayerCoord;
-	// ÇÃ·¹ÀÌ¾îÀÇ ÇöÀç ÇÁ·¹ÀÓ À§Ä¡
-	private Vector2  currentPlayerCoord;
+	// í”Œë ˆì´ì–´ì˜ ì´ì „ í”„ë ˆì„ ìœ„ì¹˜
+	private Vector2           prevPlayerCoord;
+	// í”Œë ˆì´ì–´ì˜ í˜„ì¬ í”„ë ˆì„ ìœ„ì¹˜
+	private Vector2           currentPlayerCoord;
 
 	public Map(MapSettingManager mapSettingManager)
 	{
@@ -31,76 +31,76 @@ public class Map
 		GenerateMap();
 	}
 
-    /// <summary> ÁÖ¾îÁø Ã»Å© ÁÂÇ¥¿¡¼­ ÇØ´çÇÏ´Â Ã»Å©¸¦ ¾÷µ¥ÀÌÆ®ÇÕ´Ï´Ù. </summary>
+    /// <summary> ì£¼ì–´ì§„ ì²­í¬ ì¢Œí‘œì—ì„œ í•´ë‹¹í•˜ëŠ” ì²­í¬ë¥¼ ì—…ë°ì´íŠ¸í•©ë‹ˆë‹¤. </summary>
     public void DrawMap(int x, int z)
-	{
+    {
 		GetChunkFromChunkCoord(x, z, ChunkType.Ground).UpdateChunk();
-        GetChunkFromChunkCoord(x, z, ChunkType.Water).UpdateChunk();
+        	GetChunkFromChunkCoord(x, z, ChunkType.Water).UpdateChunk();
     }
 
-    /// <summary> ¸ÊÀ» »ı¼ºÇÏ°í, Ã»Å©¸¦ »ı¼ºÇÏ¿© Ç¥½ÃÇÕ´Ï´Ù. </summary>
+    /// <summary> ë§µì„ ìƒì„±í•˜ê³ , ì²­í¬ë¥¼ ìƒì„±í•˜ì—¬ í‘œì‹œí•©ë‹ˆë‹¤. </summary>
     public void GenerateMap()
-	{
-        int center =  mapSettingManager.MapSizeInChunks / 2;
-        int viewMin = center - mapSettingManager.ViewDistanceInChunks;
-        int viewMax = center + mapSettingManager.ViewDistanceInChunks;
+    {
+        	int center =  mapSettingManager.MapSizeInChunks / 2;
+        	int viewMin = center - mapSettingManager.ViewDistanceInChunks;
+        	int viewMax = center + mapSettingManager.ViewDistanceInChunks;
 
-        for (int x = viewMin; x < viewMax; x++)
-        {
-            for (int z = viewMin; z < viewMax; z++)
-            {
-                GenerateChunk(x, z);
-            }
-        }
+        	for (int x = viewMin; x < viewMax; x++)
+        	{
+           	 	for (int z = viewMin; z < viewMax; z++)
+            		{
+                	GenerateChunk(x, z);
+            		}
+        	}
 
-        for (int x = viewMin; x < viewMax; x++)
-        {
-            for (int z = viewMin; z < viewMax; z++)
-            {
-                DrawMap(x, z);
-            }
-        }
+        	for (int x = viewMin; x < viewMax; x++)
+        	{
+            		for (int z = viewMin; z < viewMax; z++)
+            		{
+                	DrawMap(x, z);
+            		}
+        	}
     }
 
-    /// <summary> ÁÖ¾îÁø ÁÂÇ¥¿¡¼­ Ã»Å©¸¦ »ı¼ºÇÕ´Ï´Ù. </summary>
+    /// <summary> ì£¼ì–´ì§„ ì¢Œí‘œì—ì„œ ì²­í¬ë¥¼ ìƒì„±í•©ë‹ˆë‹¤. </summary>
     public void GenerateChunk(int x, int z)
-	{
+    {
 		Chunk groundTempChunk = new Chunk(new Vector2Int(x, z), this, mapSettingManager, ChunkType.Ground);
-        Chunk waterTempChunk  = new Chunk(new Vector2Int(x, z), this, mapSettingManager, ChunkType.Water);
+        	Chunk waterTempChunk  = new Chunk(new Vector2Int(x, z), this, mapSettingManager, ChunkType.Water);
 
-		JsonManager.Instance.Save(groundTempChunk); //»õ·Î »ı¼ºµÈ Ã»Å© ÀúÀå
+		JsonManager.Instance.Save(groundTempChunk); //ìƒˆë¡œ ìƒì„±ëœ ì²­í¬ ì €ì¥
 
-        groundChunks[x, z]   = groundTempChunk;
+        	groundChunks[x, z]       = groundTempChunk;
 		waterChunks[x, z]	 = waterTempChunk;
-	}
+    }
 
-    /// <summary> ÁÖ¾îÁø À§Ä¡ÀÇ Ã»Å©¸¦ ¾÷µ¥ÀÌÆ®ÇÕ´Ï´Ù. </summary>
+    /// <summary> ì£¼ì–´ì§„ ìœ„ì¹˜ì˜ ì²­í¬ë¥¼ ì—…ë°ì´íŠ¸í•©ë‹ˆë‹¤. </summary>
     public void UpdateChunk(Vector3 pos)
-	{
+    {
 		if (IsVoxelInMap(pos))
 		{
 			GetChunkFromPosition(pos, ChunkType.Ground).UpdateChunk();
 		}
 		else
 		{
-			Debug.Log("Ã»Å©°¡ Á¸ÀçÇÏÁö ¾Ê¾Æ UpdateChunk() ½ÇÇà ºÒ°¡");
+			Debug.Log("ì²­í¬ê°€ ì¡´ì¬í•˜ì§€ ì•Šì•„ UpdateChunk() ì‹¤í–‰ ë¶ˆê°€");
 		}
-	}
+    }
 
-    /// <summary> ÇÃ·¹ÀÌ¾îÀÇ À§Ä¡¸¦ È®ÀÎÇÏ°í, Ã»Å© ¾÷µ¥ÀÌÆ®¸¦ Ã¼Å©ÇÕ´Ï´Ù. </summary>
+    /// <summary> í”Œë ˆì´ì–´ì˜ ìœ„ì¹˜ë¥¼ í™•ì¸í•˜ê³ , ì²­í¬ ì—…ë°ì´íŠ¸ë¥¼ ì²´í¬í•©ë‹ˆë‹¤. </summary>
     public void CheckAndUpdateChunks()
-	{
+    {
 		currentPlayerCoord = GetChunkCoordFromPosition(mapSettingManager.Player.position);
 
 		if (!prevPlayerCoord.Equals(currentPlayerCoord))
 			UpdateChunkInViewRange();
 
 		prevPlayerCoord = currentPlayerCoord;
-	}
+    }
 
-    /// <summary> ½ºÆù À§Ä¡¸¦ ÃÊ±âÈ­ÇÕ´Ï´Ù. </summary>
+    /// <summary> ìŠ¤í° ìœ„ì¹˜ë¥¼ ì´ˆê¸°í™”í•©ë‹ˆë‹¤. </summary>
     public void InitializeSpawnPosition()
-	{
+    {
 		Vector3 spawnPosition = new Vector3(
 				ChunkData.ChunkWidthValue  * mapSettingManager.MapSizeInChunks * 0.5f,
 				ChunkData.ChunkHeightValue,
@@ -110,18 +110,18 @@ public class Map
 
 		prevPlayerCoord    = new Vector2Int(-1, -1);
 		currentPlayerCoord = GetChunkCoordFromPosition(mapSettingManager.Player.position);
-	}
+    }
 
-    /// <summary> ÇöÀç ºä ¹üÀ§ ³»¿¡¼­ Ã»Å©¸¦ È°¼ºÈ­/ºñÈ°¼ºÈ­ÇÕ´Ï´Ù. </summary>
+    /// <summary> í˜„ì¬ ë·° ë²”ìœ„ ë‚´ì—ì„œ ì²­í¬ë¥¼ í™œì„±í™”/ë¹„í™œì„±í™”í•©ë‹ˆë‹¤. </summary>
     private void UpdateChunkInViewRange()
-	{
+    {
 		Vector2 chunkCoord = GetChunkCoordFromPosition(mapSettingManager.Player.position);
 		int viewDist = mapSettingManager.ViewDistanceInChunks;
 
 		(int x, int z) viewMin = ((int)chunkCoord.x - viewDist, (int)chunkCoord.y - viewDist);
 		(int x, int z) viewMax = ((int)chunkCoord.x + viewDist, (int)chunkCoord.y + viewDist);
 
-		// È°¼º ¸ñ·Ï : ÇöÀç -> ÀÌÀüÀ¸·Î ÀÌµ¿
+		// í™œì„± ëª©ë¡ : í˜„ì¬ -> ì´ì „ìœ¼ë¡œ ì´ë™
 		prevActiveChunkList = currentActiveChunkList;
 		currentActiveChunkList = new List<Chunk>();
 
@@ -152,25 +152,25 @@ public class Map
 			}
 		}
 
-		// Â÷ÁıÇÕÀ¸·Î ³²Àº Ã»Å©µé ºñÈ°¼ºÈ­
+		// ì°¨ì§‘í•©ìœ¼ë¡œ ë‚¨ì€ ì²­í¬ë“¤ ë¹„í™œì„±í™”
 		foreach (var chunk in prevActiveChunkList)
 		{
 			Vector2Int coord = chunk.Coord;
 			chunk.IsActive = false;
 			waterChunks[coord.x, coord.y].IsActive = false;
 		}
-	}
+    }
 
-    #region ³ôÀÌ µ¥ÀÌÅÍ, ºí·° µ¥ÀÌÅÍ ¼³Á¤ 
-    /// <summary> ÁÖ¾îÁø À§Ä¡¿¡¼­ ºí·Ï ³ôÀÌ¸¦ °è»êÇÏ¿© ¹İÈ¯ÇÕ´Ï´Ù. </summary>
+    #region ë†’ì´ ë°ì´í„°, ë¸”ëŸ­ ë°ì´í„° ì„¤ì • 
+    /// <summary> ì£¼ì–´ì§„ ìœ„ì¹˜ì—ì„œ ë¸”ë¡ ë†’ì´ë¥¼ ê³„ì‚°í•˜ì—¬ ë°˜í™˜í•©ë‹ˆë‹¤. </summary>
     public int CalculateBlcokHeight(Vector3 pos)
-	{
+    {
 		return PerlinNoise.GetHeightFromNoise(new Vector2(pos.x, pos.z), mapSettingManager.Scale, mapSettingManager.Seed);
-	}
+    }
 
-    /// <summary> ÁÖ¾îÁø À§Ä¡¿Í ºí·Ï ³ôÀÌ¿¡ µû¶ó ÇØ´ç ºí·ÏÀÇ µ¥ÀÌÅÍ¸¦ °è»êÇÏ¿© ¹İÈ¯ÇÕ´Ï´Ù. </summary>
+    /// <summary> ì£¼ì–´ì§„ ìœ„ì¹˜ì™€ ë¸”ë¡ ë†’ì´ì— ë”°ë¼ í•´ë‹¹ ë¸”ë¡ì˜ ë°ì´í„°ë¥¼ ê³„ì‚°í•˜ì—¬ ë°˜í™˜í•©ë‹ˆë‹¤. </summary>
     public BlockData CalculateBlockData(Vector3 pos, int blockHeight)
-	{
+    {
 		if(blockHeight <= mapSettingManager.WaterHeight && pos.y < mapSettingManager.WaterHeight)
 		{
 			return mapSettingManager.FindBlockType(Water);
@@ -178,18 +178,18 @@ public class Map
 		else if(pos.y < blockHeight)
 		{
 			return mapSettingManager.GetBlockTypeWithNoise(new Vector2(pos.x, pos.z));
-        }
+                }
 		else
 		{
 			return mapSettingManager.FindBlockType(Air);
-        }
-	}
+                }
+    }
     #endregion
 
-    #region Ã»Å© Á¶È¸ ¹× ¿ùµå ¹üÀ§ °Ë»ç 
-    /// <summary> ÁÖ¾îÁø À§Ä¡¿Í Ã»Å© Å¸ÀÔ¿¡ ¸Â´Â Ã»Å©¸¦ ¹İÈ¯ÇÕ´Ï´Ù. </summary>
+    #region ì²­í¬ ì¡°íšŒ ë° ì›”ë“œ ë²”ìœ„ ê²€ì‚¬ 
+    /// <summary> ì£¼ì–´ì§„ ìœ„ì¹˜ì™€ ì²­í¬ íƒ€ì…ì— ë§ëŠ” ì²­í¬ë¥¼ ë°˜í™˜í•©ë‹ˆë‹¤. </summary>
     public Chunk GetChunkFromPosition(Vector3 pos, ChunkType chunkType)
-	{
+    {
 		int x = Mathf.FloorToInt(pos.x / ChunkData.ChunkWidthValue);
 		int z = Mathf.FloorToInt(pos.z / ChunkData.ChunkLengthValue);
 
@@ -197,13 +197,13 @@ public class Map
 		{
 			case ChunkType.Ground:
 				return groundChunks[x, z];
-            case ChunkType.Water:
+                        case ChunkType.Water:
 				return waterChunks[x, z];
 		}
 		return null;
     }
 
-    /// <summary> ÁÖ¾îÁø ÁÂÇ¥¿Í Ã»Å© Å¸ÀÔ¿¡ ¸Â´Â Ã»Å©¸¦ ¹İÈ¯ÇÕ´Ï´Ù. </summary>
+    /// <summary> ì£¼ì–´ì§„ ì¢Œí‘œì™€ ì²­í¬ íƒ€ì…ì— ë§ëŠ” ì²­í¬ë¥¼ ë°˜í™˜í•©ë‹ˆë‹¤. </summary>
     public Chunk GetChunkFromPosition(float x, float z, ChunkType chunkType)
     {
         int coordX = Mathf.FloorToInt(x / ChunkData.ChunkWidthValue);
@@ -211,7 +211,7 @@ public class Map
 
         switch (chunkType)
         {
-            case ChunkType.Ground:
+                        case ChunkType.Ground:
 				return groundChunks[coordX, coordZ];
 			case ChunkType.Water:
 				return waterChunks[coordX, coordZ];
@@ -220,21 +220,21 @@ public class Map
         return null;
     }
 
-    /// <summary> ÁÖ¾îÁø Ã»Å© ÁÂÇ¥¿Í Ã»Å© Å¸ÀÔ¿¡ ¸Â´Â Ã»Å©¸¦ ¹İÈ¯ÇÕ´Ï´Ù. </summary>	
+    /// <summary> ì£¼ì–´ì§„ ì²­í¬ ì¢Œí‘œì™€ ì²­í¬ íƒ€ì…ì— ë§ëŠ” ì²­í¬ë¥¼ ë°˜í™˜í•©ë‹ˆë‹¤. </summary>	
     public Chunk GetChunkFromChunkCoord(int x, int z, ChunkType chunkType)
-	{
-        switch (chunkType)
-        {
-            case ChunkType.Ground:
+    {
+                switch (chunkType)
+                {
+                        case ChunkType.Ground:
 				return groundChunks[x, z];
 			case ChunkType.Water:
 				return waterChunks[x, z];
 		}
-        Debug.Log($"{x} : {z} ÁÂÇ¥¿¡ ÀÖ´Â Ã»Å©°¡ ¾ø½À´Ï´Ù");
+                Debug.Log($"{x} : {z} ì¢Œí‘œì— ìˆëŠ” ì²­í¬ê°€ ì—†ìŠµë‹ˆë‹¤");
 		return null;
-	}
+    }
 
-    /// <summary> ÁÖ¾îÁø À§Ä¡¿¡¼­ Ã»Å© ÁÂÇ¥¸¦ °è»êÇÏ¿© ¹İÈ¯ÇÕ´Ï´Ù. </summary>
+    /// <summary> ì£¼ì–´ì§„ ìœ„ì¹˜ì—ì„œ ì²­í¬ ì¢Œí‘œë¥¼ ê³„ì‚°í•˜ì—¬ ë°˜í™˜í•©ë‹ˆë‹¤. </summary>
     public Vector2 GetChunkCoordFromPosition(Vector3 pos)
     {
         int x = Mathf.FloorToInt(pos.x / ChunkData.ChunkWidthValue);
@@ -243,9 +243,9 @@ public class Map
         return new Vector2(x, z);
     }
 
-    /// <summary> ÁÖ¾îÁø º¹¼¿ À§Ä¡°¡ ¸Ê ³»¿¡ ÀÖ´ÂÁö È®ÀÎÇÏ¿© ¹İÈ¯ÇÕ´Ï´Ù. </summary>
+    /// <summary> ì£¼ì–´ì§„ ë³µì…€ ìœ„ì¹˜ê°€ ë§µ ë‚´ì— ìˆëŠ”ì§€ í™•ì¸í•˜ì—¬ ë°˜í™˜í•©ë‹ˆë‹¤. </summary>
     public bool IsVoxelInMap(Vector3 pos)
-	{
+    {
 		int x = Mathf.FloorToInt(pos.x);
 		int y = Mathf.FloorToInt(pos.y);
 		int z = Mathf.FloorToInt(pos.z);
@@ -260,11 +260,11 @@ public class Map
 		{
 			return true;
 		}
-	}
+    }
 
-    /// <summary> ÁÖ¾îÁø Ã»Å©°¡ ¸Ê ³»¿¡ ÀÖ´ÂÁö È®ÀÎÇÏ¿© ¹İÈ¯ÇÕ´Ï´Ù. </summary>
+    /// <summary> ì£¼ì–´ì§„ ì²­í¬ê°€ ë§µ ë‚´ì— ìˆëŠ”ì§€ í™•ì¸í•˜ì—¬ ë°˜í™˜í•©ë‹ˆë‹¤. </summary>
     public bool IsChunkInMap(int x, int z)
-	{
+    {
 		if (x >= 0 && x < mapSettingManager.MapSizeInChunks &&
 			z >= 0 && z < mapSettingManager.MapSizeInChunks)
 		{
@@ -276,21 +276,6 @@ public class Map
 		}
     }
 
-	//public string GetVoxelType(Vector3 pos)
-	//{
-	//	int x = Mathf.FloorToInt(pos.x);
-	//	int y = Mathf.FloorToInt(pos.y);
-	//	int z = Mathf.FloorToInt(pos.z);
 
-	//	y += -((int)mapSettingManager.ParentChunkYPos);
-
-	//	if (x < 0 || x >= (mapSettingManager.MapWidthChunkValue * ChunkData.ChunkWidthValue) ||
-	//		z < 0 || z >= (mapSettingManager.MapLengthChunkValue * ChunkData.ChunkLengthValue) ||
-	//		y <= mapSettingManager.ParentChunkYPos || y >= ChunkData.ChunkHeightValue)
-	//	{
-	//		return Air;
-	//	}
-	//	return mapBlock[x, y, z].id;
-	//}
-	#endregion
+   #endregion
 }
