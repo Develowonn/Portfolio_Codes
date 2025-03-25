@@ -61,9 +61,9 @@ public class MapSettingManager : MonoBehaviour
 
 	[Header("[# ETC]")]
 	[SerializeField]
-	private Transform player;
+	private Transform 	    player;
 	[SerializeField]
-	private int       viewDistanceInChunks;
+	private int       	    viewDistanceInChunks;
 
         #region 프로퍼티 ( Get 기능 )
         // # 프로퍼티 ( Get 기능 )
