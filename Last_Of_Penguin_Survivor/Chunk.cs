@@ -11,37 +11,37 @@ using static BlockConstants;
 [System.Serializable]
 public class Chunk
 {
-	// #  Ã»Å© °øÀ¯¸¦ À§ÇÑ Å¬·¡½º
+	// #  ì²­í¬ ê³µìœ ë¥¼ ìœ„í•œ í´ë˜ìŠ¤
 	//public ChunkSync chunkSync;
 
-	// # Ã»Å© ÁÂÇ¥ 
-	private Vector2Int			coord;
+	// # ì²­í¬ ì¢Œí‘œ 
+	private Vector2Int		coord;
 
-	// # Ã»Å© Å¸ÀÔ
-	private ChunkType			chunkType;
+	// # ì²­í¬ íƒ€ì…
+	private ChunkType		chunkType;
 
-	// # ¸Ş½¬ ¿ÀºêÁ§Æ® °ü·Ã
-	public  GameObject			chunkObject;
+	// # ë©”ì‰¬ ì˜¤ë¸Œì íŠ¸ ê´€ë ¨
+	public  GameObject		chunkObject;
 	private MeshRenderer		meshRenderer;
-	private MeshFilter			meshFilter;
+	private MeshFilter		meshFilter;
 	private MeshCollider		meshCollider;
-	private Material			material;
+	private Material		material;
 
-	// # ¸Ş½¬ µ¥ÀÌÅÍ °ü·Ã
-	private int					vertexIndex		  = 0;
+	// # ë©”ì‰¬ ë°ì´í„° ê´€ë ¨
+	private int			vertexIndex		  = 0;
 	private List<Vector3>		vertices		  = new List<Vector3>();
-	private List<int>			triangles		  = new List<int>();
-	private List<Vector2>		uvs				  = new List<Vector2>();
+	private List<int>	 	triangles		  = new List<int>();
+	private List<Vector2>		uvs		          = new List<Vector2>();
 
-	private Map					map				  = null;
-	private MapSettingManager	mapSettingManager = null;
+	private Map			map		          = null;
+	private MapSettingManager	mapSettingManager         = null;
 
-	private BlockData[,,]		blockInChunk      = new BlockData[ChunkData.ChunkWidthValue, ChunkData.ChunkHeightValue, ChunkData.ChunkLengthValue];
-	private int[,]				blockHeight		  = new int[ChunkData.ChunkWidthValue, ChunkData.ChunkLengthValue];
+	private BlockData[,,]		blockInChunk              = new BlockData[ChunkData.ChunkWidthValue, ChunkData.ChunkHeightValue, ChunkData.ChunkLengthValue];
+	private int[,]		        blockHeight		  = new int[ChunkData.ChunkWidthValue, ChunkData.ChunkLengthValue];
 
-	#region ÇÁ·ÎÆÛÆ¼ ( Get ±â´É )
-	public Vector2Int	 Coord => coord;
-	public BlockData[,,] BlockInChunk => blockInChunk;
+	#region í”„ë¡œí¼í‹° ( Get ê¸°ëŠ¥ )
+	public Vector2Int	        Coord                     => coord;
+	public BlockData[,,]            BlockInChunk              => blockInChunk;
 	#endregion
 
 	public Chunk(Vector2Int coord, Map map, MapSettingManager mapSettingManager, ChunkType chunkType)
@@ -85,7 +85,7 @@ public class Chunk
 		UpdateChunk();
 	}
 
-	///<summary>ÇöÀç Ã»Å©ÀÇ ¿ùµå °ø°£ À§Ä¡¸¦ °¡Á®¿É´Ï´Ù.</summary>
+	///<summary>í˜„ì¬ ì²­í¬ì˜ ì›”ë“œ ê³µê°„ ìœ„ì¹˜ë¥¼ ê°€ì ¸ì˜µë‹ˆë‹¤.</summary>
 	public Vector3 Position
 	{
 		get { return chunkObject.transform.localPosition; }
@@ -125,10 +125,10 @@ public class Chunk
         }
     }
 
-    ///<summary>ÁöÁ¤µÈ À§Ä¡ÀÇ º¹¼¿ µ¥ÀÌÅÍ¸¦ »õ·Î¿î µ¥ÀÌÅÍ·Î º¯°æÇÕ´Ï´Ù.</summary>
+    ///<summary>ì§€ì •ëœ ìœ„ì¹˜ì˜ ë³µì…€ ë°ì´í„°ë¥¼ ìƒˆë¡œìš´ ë°ì´í„°ë¡œ ë³€ê²½í•©ë‹ˆë‹¤.</summary>
     public void EditVoxel(Vector3 pos, BlockData newBlockData)
     {
-		Debug.Log($"ºí·°ÆÄ±«! : {pos}, {newBlockData}");
+		Debug.Log($"ë¸”ëŸ­íŒŒê´´! : {pos}, {newBlockData}");
 
         int globalX = Mathf.FloorToInt(pos.x);
         int globalY = Mathf.FloorToInt(pos.y);
@@ -145,8 +145,8 @@ public class Chunk
         //chunkSync?.EditChunk(coord, this);
     }
 
-    #region Ã»Å© ¸Ş½Ã »ı¼º ¹× °»½Å
-    ///<summary>ÁÖº¯ Ã»Å©ÀÇ ¸Ş½Ã¸¦ °»½ÅÇÕ´Ï´Ù.</summary>
+    #region ì²­í¬ ë©”ì‹œ ìƒì„± ë° ê°±ì‹ 
+    ///<summary>ì£¼ë³€ ì²­í¬ì˜ ë©”ì‹œë¥¼ ê°±ì‹ í•©ë‹ˆë‹¤.</summary>
     private void UpdateSurroundingVoxels(int x, int y, int z)
     {
         Vector3 thisVoxel = new Vector3(x, y, z);
@@ -166,7 +166,7 @@ public class Chunk
         }
     }
 
-    ///<summary>Ã»Å© µ¥ÀÌÅÍ¸¦ °»½ÅÇÏ°í ¸Ş½Ã¸¦ »ı¼ºÇÕ´Ï´Ù.</summary>
+    ///<summary>ì²­í¬ ë°ì´í„°ë¥¼ ê°±ì‹ í•˜ê³  ë©”ì‹œë¥¼ ìƒì„±í•©ë‹ˆë‹¤.</summary>
     public void UpdateChunk()
 	{
 		ClearMeshData();
@@ -208,7 +208,7 @@ public class Chunk
 		CreateMesh();
 	}
 
-	///<summary>¸Ş½Ã¿¡ ÇÊ¿äÇÑ µ¥ÀÌÅÍ¸¦ ÃÊ±âÈ­ÇÕ´Ï´Ù.</summary>
+	///<summary>ë©”ì‹œì— í•„ìš”í•œ ë°ì´í„°ë¥¼ ì´ˆê¸°í™”í•©ë‹ˆë‹¤.</summary>
 	public void ClearMeshData()
 	{
 		vertexIndex = 0;
@@ -218,7 +218,7 @@ public class Chunk
 		uvs.Clear();
 	}
 
-	///<summary>ÇöÀç Ã»Å©ÀÇ ¸Ş½Ã¸¦ »ı¼ºÇÏ°í Ãæµ¹ ¸Ş½Ã¸¦ ¼³Á¤ÇÕ´Ï´Ù.</summary>
+	///<summary>í˜„ì¬ ì²­í¬ì˜ ë©”ì‹œë¥¼ ìƒì„±í•˜ê³  ì¶©ëŒ ë©”ì‹œë¥¼ ì„¤ì •í•©ë‹ˆë‹¤.</summary>
 	public void CreateMesh()
 	{
 		Mesh mesh = new Mesh
@@ -232,7 +232,7 @@ public class Chunk
 		mesh.Optimize();
 		meshFilter.mesh = mesh;
 
-		// Ãæµ¹ ¸Ş½Ã ¼³Á¤
+		// ì¶©ëŒ ë©”ì‹œ ì„¤ì •
 		meshCollider.sharedMesh = null;
 		Mesh collisionMesh = new Mesh
 		{
@@ -244,7 +244,7 @@ public class Chunk
 		meshCollider.sharedMesh = collisionMesh;
 	}
 
-	///<summary>ÁöÁ¤µÈ À§Ä¡ÀÇ º¹¼¿ µ¥ÀÌÅÍ¸¦ ¸Ş½Ã¿¡ Ãß°¡ÇÕ´Ï´Ù.</summary>
+	///<summary>ì§€ì •ëœ ìœ„ì¹˜ì˜ ë³µì…€ ë°ì´í„°ë¥¼ ë©”ì‹œì— ì¶”ê°€í•©ë‹ˆë‹¤.</summary>
 	private void UpdateMeshData(Vector3 pos)
 	{
 		for (int p = 0; p < VoxelData.FaceCount; p++)
@@ -259,7 +259,7 @@ public class Chunk
 
 			AddTexture(blockInChunk[(int)pos.x, (int)pos.y, (int)pos.z].GetBlockTexutreID(p), blockInChunk[(int)pos.x, (int)pos.y, (int)pos.z].rotation);
 
-            // º¹¼¿ ¸éÀ» ±×¸®±â À§ÇÑ »ï°¢Çü Á¤º¸¸¦ ÀúÀå
+            // ë³µì…€ ë©´ì„ ê·¸ë¦¬ê¸° ìœ„í•œ ì‚¼ê°í˜• ì •ë³´ë¥¼ ì €ì¥
             triangles.Add(vertexIndex + 0);
 			triangles.Add(vertexIndex + 1);
 			triangles.Add(vertexIndex + 2);
@@ -268,12 +268,12 @@ public class Chunk
 			triangles.Add(vertexIndex + 1);
 			triangles.Add(vertexIndex + 3);
 
-            // 1¸éÀÌ Ãß°¡µÉ ¶§¸¶´Ù 4°³ÀÇ Á¤Á¡ÀÌ ÇÊ¿äÇÏ±â ¶§¹®¿¡ 4¸¦ ´õÇÔ
+            // 1ë©´ì´ ì¶”ê°€ë  ë•Œë§ˆë‹¤ 4ê°œì˜ ì •ì ì´ í•„ìš”í•˜ê¸° ë•Œë¬¸ì— 4ë¥¼ ë”í•¨
             vertexIndex += 4;
 		}
 	}
 
-	///<summary>ÁöÁ¤µÈ ÅØ½ºÃ³ ID¿Í È¸ÀüÀ» ±â¹İÀ¸·Î UV ÁÂÇ¥¸¦ Ãß°¡ÇÕ´Ï´Ù.</summary>
+	///<summary>ì§€ì •ëœ í…ìŠ¤ì²˜ IDì™€ íšŒì „ì„ ê¸°ë°˜ìœ¼ë¡œ UV ì¢Œí‘œë¥¼ ì¶”ê°€í•©ë‹ˆë‹¤.</summary>
 	private void AddTexture(int textureID, int rotation = 0)
 	{
 		const float uvXBeginOffset = 0.003f;
@@ -282,7 +282,7 @@ public class Chunk
 		const float uvYEndOffset = 0.003f;
 
 
-        // textureID¿¡ µû¶ó ÅØ½ºÃ³ÀÇ À§Ä¡¸¦ °è»êÇÕ´Ï´Ù.
+        // textureIDì— ë”°ë¼ í…ìŠ¤ì²˜ì˜ ìœ„ì¹˜ë¥¼ ê³„ì‚°í•©ë‹ˆë‹¤.
         float y = textureID / VoxelData.TextureAtlasSizeInBlocksX;
 		float x = textureID % VoxelData.TextureAtlasSizeInBlocksX;
 
@@ -291,7 +291,7 @@ public class Chunk
 
 		y = 1f - y - VoxelData.NormalizedBlockTextureSizeY;
 
-        // ÅØ½ºÃ³ÀÇ 4°³ÀÇ ²ÀÁşÁ¡¿¡ ´ëÇÑ UV ÁÂÇ¥¸¦ °è»êÇÕ´Ï´Ù.
+        // í…ìŠ¤ì²˜ì˜ 4ê°œì˜ ê¼­ì§“ì ì— ëŒ€í•œ UV ì¢Œí‘œë¥¼ ê³„ì‚°í•©ë‹ˆë‹¤.
         Vector2[] unprocessedUVs = new Vector2[]
 		{
 		new(x + uvXBeginOffset, y + uvYBeginOffset),
@@ -303,7 +303,7 @@ public class Chunk
 		Vector2[] finalUVs = (Vector2[])unprocessedUVs.Clone();
 
 
-        // È¸Àü °ª¿¡ µû¶ó UV ÁÂÇ¥¸¦ È¸Àü½ÃÅµ´Ï´Ù.
+        // íšŒì „ ê°’ì— ë”°ë¼ UV ì¢Œí‘œë¥¼ íšŒì „ì‹œí‚µë‹ˆë‹¤.
         switch (rotation)
 		{
 			case 1:
@@ -333,9 +333,9 @@ public class Chunk
 	}
     #endregion
 
-    #region Á¶°Ç¿¡ ÀûÇÕÇÑÁö °Ë»çÇÏ´Â ÇÔ¼ö
+    #region ì¡°ê±´ì— ì í•©í•œì§€ ê²€ì‚¬í•˜ëŠ” í•¨ìˆ˜
     /// <summary>
-    /// º¹¼¿ÀÌ Ã»Å© ³»¿¡ ÀÖ´ÂÁö È®ÀÎÇÕ´Ï´Ù.
+    /// ë³µì…€ì´ ì²­í¬ ë‚´ì— ìˆëŠ”ì§€ í™•ì¸í•©ë‹ˆë‹¤.
     /// </summary>
     private bool IsVoxelInChunk(int x, int y, int z)
 	{
@@ -348,7 +348,7 @@ public class Chunk
 	}
 
 	/// <summary>
-	/// ÁöÁ¤µÈ À§Ä¡ÀÇ º¹¼¿ÀÌ Ã»Å© ³»¿¡ ÀÖ´ÂÁö È®ÀÎÇÏ°í, ÇØ´ç º¹¼¿ÀÌ ¼Ö¸®µåÇÑÁö °Ë»çÇÕ´Ï´Ù.
+	/// ì§€ì •ëœ ìœ„ì¹˜ì˜ ë³µì…€ì´ ì²­í¬ ë‚´ì— ìˆëŠ”ì§€ í™•ì¸í•˜ê³ , í•´ë‹¹ ë³µì…€ì´ ì†”ë¦¬ë“œí•œì§€ ê²€ì‚¬í•©ë‹ˆë‹¤.
 	/// </summary>
 	private bool IsVoxelSolid(Vector3 pos)
 	{
@@ -358,7 +358,7 @@ public class Chunk
 
 		if (chunkType == ChunkType.Ground)
 		{
-			// Ã»Å© ³»¿¡ ÀÖ´ÂÁö È®ÀÎ
+			// ì²­í¬ ë‚´ì— ìˆëŠ”ì§€ í™•ì¸
 			if (!IsVoxelInChunk(x, y, z))
 			{
 				Vector3 globalPos = new Vector3(x, y, z) + Position;
@@ -379,7 +379,7 @@ public class Chunk
 		}
 		else
 		{
-			// Ã»Å© ³»¿¡ ÀÖ´ÂÁö È®ÀÎ
+			// ì²­í¬ ë‚´ì— ìˆëŠ”ì§€ í™•ì¸
 			if (!IsVoxelInChunk(x, y, z))
 			{
 				Vector3 globalPos = new Vector3(x, y, z) + Position;
