@@ -46,10 +46,10 @@ public class Chunk
 
 	public Chunk(Vector2Int coord, Map map, MapSettingManager mapSettingManager, ChunkType chunkType)
 	{
-		this.coord			   = coord;
+		this.coord	         = coord;
 
-		this.map			   = map;
-		this.mapSettingManager = mapSettingManager;
+		this.map	         = map;
+		this.mapSettingManager   = mapSettingManager;
 
 		this.chunkObject	 = mapSettingManager.InstantiateChunk();
 		this.meshFilter		 = chunkObject.GetComponent<MeshFilter>();
@@ -57,12 +57,12 @@ public class Chunk
 		this.meshCollider	 = chunkObject.GetComponent<MeshCollider>();
 
 		this.chunkType		 = chunkType;
-		this.chunkObject.tag = "Ground";
+		this.chunkObject.tag     = "Ground";
 
-		chunkObject.transform.localPosition = new Vector3(coord.x * ChunkData.ChunkWidthValue, 0.0f, coord.y * ChunkData.ChunkLengthValue);
+		chunkObject.transform.localPosition     = new Vector3(coord.x * ChunkData.ChunkWidthValue, 0.0f, coord.y * ChunkData.ChunkLengthValue);
 		System.Text.StringBuilder sb		= new System.Text.StringBuilder();
 		sb.Append("Chunk "); sb.Append(coord.x); sb.Append(","); sb.Append(coord.y);
-		chunkObject.name			        = sb.ToString();
+		chunkObject.name			= sb.ToString();
 
 		switch (chunkType)
 		{
