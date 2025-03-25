@@ -3,9 +3,9 @@ using UnityEngine;
 
 public static class ChunkData
 {
-	// # Ã»Å© Á¤ÀÇ 
-	public static int ChunkWidthValue		= 10;       // Ã»Å© ¹üÀ§ Á¤ÀÇ : xÃà (°¡·Î)
-	public static int ChunkInitHeightValue  = 10;
-	public static int ChunkHeightValue		= 15;       // Ã»Å© ¹üÀ§ Á¤ÀÇ : yÃà (³ôÀÌ)
-	public static int ChunkLengthValue		= 10;       // Ã»Å© ¹üÀ§ Á¤ÀÇ : zÃà (¼¼·Î)
+	// # ì²­í¬ ì •ì˜ 
+	public static int ChunkWidthValue		= 10;       // ì²­í¬ ë²”ìœ„ ì •ì˜ : xì¶• (ê°€ë¡œ)
+	public static int ChunkInitHeightValue          = 10;
+	public static int ChunkHeightValue		= 15;       // ì²­í¬ ë²”ìœ„ ì •ì˜ : yì¶• (ë†’ì´)
+	public static int ChunkLengthValue		= 10;       // ì²­í¬ ë²”ìœ„ ì •ì˜ : zì¶• (ì„¸ë¡œ)
 }
