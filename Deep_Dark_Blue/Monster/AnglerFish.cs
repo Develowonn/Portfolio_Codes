@@ -6,7 +6,7 @@ using System.Collections.Generic;
 // # Unity
 using UnityEngine;
 
-public class Anglerfish : MonsterBase
+public class AnglerFish : MonsterBase
 {
     [Space(10)]
     [SerializeField]
