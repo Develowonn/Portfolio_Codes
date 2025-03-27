@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80f234c791228004ea2db770758a5741, type: 3}
+  m_Name: Udon
+  m_EditorClassIdentifier: 
+  foodName: Udon
+  cookingTimeLimit: 30
+  foodSprite: {fileID: 21300000, guid: a7a6f8015ec0467419948c9bd62db67d, type: 3}
+  materials:
+  - materialName: FishCake
+    materialSprite: {fileID: 21300000, guid: 54542a74f6403ef4eb65ac2f29e474ed, type: 3}
+    materialMaxCount: 2
+    materialCount: 0
+    positionOffset: {x: 0, y: 0, z: 0}
+    rotationOffset: {x: 0, y: 0, z: 0}
+    scale: {x: 0, y: 0, z: 0}
+  - materialName: SoySauce
+    materialSprite: {fileID: 21300000, guid: db2246e25b578774fac6c3f9d4b969f4, type: 3}
+    materialMaxCount: 2
+    materialCount: 0
+    positionOffset: {x: 0, y: 0, z: 0}
+    rotationOffset: {x: 0, y: 0, z: 0}
+    scale: {x: 0, y: 0, z: 0}
+  - materialName: Noodles
+    materialSprite: {fileID: 21300000, guid: 5f49fa5305211a44baee62fbab416383, type: 3}
+    materialMaxCount: 2
+    materialCount: 0
+    positionOffset: {x: 0, y: 0, z: 0}
+    rotationOffset: {x: 0, y: 0, z: 0}
+    scale: {x: 0, y: 0, z: 0}
