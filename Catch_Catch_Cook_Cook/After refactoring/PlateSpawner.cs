@@ -10,11 +10,11 @@ public class PlateSpawner : MonoBehaviour
 	[SerializeField]
 	private Transform    plateLeftSpawnPoint;
 	[SerializeField]
-	private Transform	 plateRightSpawnPoint;
+	private Transform    plateRightSpawnPoint;
 	[SerializeField]
 	private float	     plateMovementSpeed;
 	[SerializeField]
-	private float		 spawnTime;
+	private float	     spawnTime;
 
 	private void Start()
 	{
@@ -27,16 +27,16 @@ public class PlateSpawner : MonoBehaviour
 
 		while(true)
 		{
-			// ½ºÆù À§Ä¡ ¼³Á¤
+			// ìŠ¤í° ìœ„ì¹˜ ì„¤ì •
 			bool		   isLeftSpawn = Random.Range(0, 2) == 0 ? true : false;
 			Vector3		   spawnPoint  = isLeftSpawn == true ? plateLeftSpawnPoint.position 
 														  : plateRightSpawnPoint.position;
 
-			// Á¢½Ã ¼ÒÈ¯
-			GameObject     clone       = MaterialPlatePoolManager.Instance.GetMaterialPlate();
+			// ì ‘ì‹œ ì†Œí™˜
+			GameObject         clone       = MaterialPlatePoolManager.Instance.GetMaterialPlate();
 			Vector3		   movementDir = isLeftSpawn == true ? Vector3.right : Vector3.left;
 
-			// Á¢½Ã ¼¼ÆÃ
+			// ì ‘ì‹œ ì„¸íŒ…
 			Material material = GameManager.Instance.GetRandomMaterial();
 			clone.GetComponent<MaterialPlate>().Initialize(spawnPoint, plateMovementSpeed, movementDir, material);
 
