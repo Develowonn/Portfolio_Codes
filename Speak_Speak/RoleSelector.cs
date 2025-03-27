@@ -9,11 +9,11 @@ using UnityEngine;
 using Photon.Pun;
 using TMPro;
 
-using Hashtable = ExitGames.Client.Photon.Hashtable;
-
 public class RoleSelector : MonoBehaviour
 {
     [SerializeField]
+    private PhotonRoomManager               photonRoomManager;
+
     [SerializeField]
     private LayerMask                       layer;
     [SerializeField]
@@ -89,7 +89,7 @@ public class RoleSelector : MonoBehaviour
 
             int roleID = hit.collider.GetComponent<Role>().RoleID;
 
-            // ���� ��� 
+            // 역할 취소
             if(myRoleID == roleID)
             {
                 UpdateNickname(roleID, string.Empty);
@@ -104,7 +104,7 @@ public class RoleSelector : MonoBehaviour
                 return;
             }
 
-            // ���� ���� �� �ٸ� ���ҷ� �ٲ� ��
+            // 역할 선택 후 다른 역할로 바꿀 때
             if(myRoleID != -1 && !isRoleUsage[roleID])
             {
                 characters[myRoleID].SetBool("isSelect", false);
@@ -121,7 +121,7 @@ public class RoleSelector : MonoBehaviour
 
                 UpdateRole(roleID, true);
             }
-            // ������ ó�� ������ �� 
+            // 역할을 처음 선택할 떄 
             else if (!isRoleUsage[roleID])
             {
                 UpdateNickname(roleID, PhotonNetwork.NickName);
@@ -135,7 +135,7 @@ public class RoleSelector : MonoBehaviour
             }
             else
             {
-                Debug.Log("�� ������ �̹� ������Դϴ�");
+                Debug.Log("이 역할은 이미 사용중입니다");
             }
         }
     }
