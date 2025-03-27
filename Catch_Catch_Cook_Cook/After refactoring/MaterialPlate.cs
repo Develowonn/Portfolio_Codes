@@ -10,7 +10,7 @@ public class MaterialPlate : MonoBehaviour
 	[SerializeField]
 	private GameObject	material;
 	private string		materialName;		
-	private GameObject  effectObject;
+	private GameObject      effectObject;
 
 	private float		movementSpeed;
 	private Vector3		movementDirection;
@@ -45,17 +45,17 @@ public class MaterialPlate : MonoBehaviour
 		this.movementSpeed     = movementSpeed;
 		this.movementDirection = movementDirection;
 
-		// Àç·á ¼³Á¤ 
+		// ì¬ë£Œ ì„¤ì • 
 		this.materialName	   = material.materialName;
 		this.material.GetComponent<SpriteRenderer>().sprite = material.materialSprite;
 		
-		// Àç·á ¿ÀÇÁ¼Â ¼³Á¤
+		// ì¬ë£Œ ì˜¤í”„ì…‹ ì„¤ì •
 		this.material.transform.position  += material.positionOffset;
 		this.material.transform.rotation   = Quaternion.Euler(this.material.transform.rotation.eulerAngles + 
 													material.rotationOffset);
 		//this.material.transform.localScale = material.scale == Vector3.zero ? Vector3.one : material.scale; 
 
-		// ¸ŞÀÎ ¿ä¸®¿¡ ÇÊ¿äÇÑ Àç·áÀÏ ¶§ ÆÄÆ¼Å¬ »ı¼º
+		// ë©”ì¸ ìš”ë¦¬ì— í•„ìš”í•œ ì¬ë£Œì¼ ë•Œ íŒŒí‹°í´ ìƒì„±
 		if (materialName == GameManager.Instance.GetCurrentMaterialName())
 		{
 			effectObject = GameManager.Instance.SpawnEffect(EffectType.RequiredMaterialEffect, transform.position);
@@ -72,25 +72,25 @@ public class MaterialPlate : MonoBehaviour
 	{
 		if (trigger.CompareTag(Constants.MainPlateTag))
 		{
-			// ¿ä¸®¿¡ ÇÊ¿äÇÑ Àç·áÀÏ ¶§
+			// ìš”ë¦¬ì— í•„ìš”í•œ ì¬ë£Œì¼ ë•Œ
 			if(materialName == GameManager.Instance.GetCurrentMaterialName())
 			{
 				GameManager.Instance.ReduceMaterialCount();
 
-				// ÀÌÆåÆ® Ã³¸®
+				// ì´í™íŠ¸ ì²˜ë¦¬
 				GameManager.Instance.SpawnEffect(EffectType.SuccessEffect, trigger.transform.position, 1.0f);
 
-				// ¸ŞÀÎ ¿ä¸® Åõ¸íµµ Ã³¸®
+				// ë©”ì¸ ìš”ë¦¬ íˆ¬ëª…ë„ ì²˜ë¦¬
 				trigger.GetComponent<FoodPlate>().UpdateAlpha();
 
-				// ¾òÀº Àç·á °³¼ö Ãß°¡
+				// ì–»ì€ ì¬ë£Œ ê°œìˆ˜ ì¶”ê°€
 				trigger.GetComponent<FoodPlate>().AddMaterialCount();
 
 			}
-			// ¿ä¸®¿¡ ÇÊ¿äÇÑ Àç·á°¡ ¾Æ´Ò ¶§
+			// ìš”ë¦¬ì— í•„ìš”í•œ ì¬ë£Œê°€ ì•„ë‹ ë•Œ
 			else
 			{
-				// ÀÌÆåÆ® Ã³¸®
+				// ì´í™íŠ¸ ì²˜ë¦¬
 				GameManager.Instance.SpawnEffect(EffectType.FailEffect, trigger.transform.position, 1.0f);
 			}
 

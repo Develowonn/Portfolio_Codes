@@ -11,24 +11,23 @@ public class FoodPlate : MonoBehaviour
 	private float		   startAlpha;
 
 	private string		   foodName;
-	private int			   foodCompleteness;
+	private int	           foodCompleteness;
 	private float		   cookingTimeLimit;
 
-	private int			   maxMaterialCount;
-	private int			   collectedMaterialCount;
+	private int		   maxMaterialCount;
+	private int	           collectedMaterialCount;
 
-	private SpriteRenderer spriteRenderer;
+	private SpriteRenderer     spriteRenderer;
 
 	private void Awake()
 	{
 		spriteRenderer = GetComponent<SpriteRenderer>();
 
-		// ÃÊ±â Åõ¸íµµ°ª ¼³Á¤
+		// ì´ˆê¸° íˆ¬ëª…ë„ê°’ ì„¤ì •
 		spriteRenderer.color = new Color(spriteRenderer.color.r, 
-										 spriteRenderer.color.g,
-										 spriteRenderer.color.b,
-										 startAlpha);
-
+						 spriteRenderer.color.g,
+						 spriteRenderer.color.b,
+						 startAlpha);
 	}
 
 	private void Start()
@@ -40,9 +39,9 @@ public class FoodPlate : MonoBehaviour
 	{
 		Food currentFood = GameManager.Instance.GetCurrentFood();
 
-		// ÇöÀç À½½Ä¿¡ ¸Â°Ô Sprite ¼³Á¤
-		spriteRenderer.sprite  = currentFood.foodSprite;
-		foodName               = currentFood.foodName;
+		// í˜„ì¬ ìŒì‹ì— ë§ê²Œ Sprite ì„¤ì •
+		spriteRenderer.sprite      = currentFood.foodSprite;
+		foodName                   = currentFood.foodName;
 		foodCompleteness	   = Constants.MaxFoodCompleteness;
 		cookingTimeLimit	   = currentFood.cookingTimeLimit;
 
