@@ -10,13 +10,13 @@ public class MaterialPlatePoolManager : Singleton<MaterialPlatePoolManager>
 	[SerializeField]
 	private List<GameObject>    plateList;
 	[SerializeField]
-	private GameObject			platePrefab;
+	private GameObject	    platePrefab;
 	[SerializeField]
-	private Transform			plateParent;
+	private Transform	    plateParent;
 	[SerializeField]
-	private int					generationCount;
+	private int		    generationCount;
 
-	private Queue<GameObject>	platePool;
+	private Queue<GameObject>   platePool;
 
 	public override void Awake()
 	{
@@ -44,12 +44,12 @@ public class MaterialPlatePoolManager : Singleton<MaterialPlatePoolManager>
 	{
 		GameObject result;
 
-		// Queue ¾È¿¡ ¿ÀºêÁ§Æ®°¡ ³²¾ÆÀÖÀ¸¸é Queue ¿¡¼­ ¹İÈ¯
+		// Queue ì•ˆì— ì˜¤ë¸Œì íŠ¸ê°€ ë‚¨ì•„ìˆìœ¼ë©´ Queue ì—ì„œ ë°˜í™˜
 		if (platePool.Count > 0)
 		{
 			result = platePool.Dequeue();
 		}
-		// Queue ¾È¿¡ ³²Àº ¿ÀºêÁ§Æ®°¡ ¾øÀ¸¸é »õ·Î »ı¼ºÇØ¼­ ¹İÈ¯
+		// Queue ì•ˆì— ë‚¨ì€ ì˜¤ë¸Œì íŠ¸ê°€ ì—†ìœ¼ë©´ ìƒˆë¡œ ìƒì„±í•´ì„œ ë°˜í™˜
 		else
 		{
 			 result = CreateMaterialPlate();

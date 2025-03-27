@@ -12,7 +12,7 @@ public class GameManager : Singleton<GameManager>
 
 	[Header("# Food ScriptableObject")]
 	[SerializeField]
-	private FoodSO[]	foodScriptableObjects;
+	private FoodSO[]    foodScriptableObjects;
 
 	[Header("# Effect Prefab")]
 	[SerializeField]
@@ -22,10 +22,10 @@ public class GameManager : Singleton<GameManager>
 	[SerializeField]
 	private GameObject  failEffect;
 
-	private Food[]		foods;
+	private Food[]	    foods;
 
-	private int			currentFoodIndex;
-	private int			currentMaterialIndex;
+	private int	    currentFoodIndex;
+	private int	    currentMaterialIndex;
 
 	public override void Awake()
 	{
@@ -35,23 +35,23 @@ public class GameManager : Singleton<GameManager>
 	}
 
 	/// <summary>
-	/// ½ºÅ©¸³ÅÍºí ¿ÀºêÁ§Æ®¿¡ ÀÖ´Â µ¥ÀÌÅÍ¸¦ °¡Á®¿Í "foods"¿¡ ÃÊ±âÈ­ÇÕ´Ï´Ù
+	/// ìŠ¤í¬ë¦½í„°ë¸” ì˜¤ë¸Œì íŠ¸ì— ìˆëŠ” ë°ì´í„°ë¥¼ ê°€ì ¸ì™€ "foods"ì— ì´ˆê¸°í™”í•©ë‹ˆë‹¤
 	/// </summary>
 	private void SetFoodData()
 	{
-		// ¹è¿­ °ø°£ »ı¼º
+		// ë°°ì—´ ê³µê°„ ìƒì„±
 		foods = new Food[foodScriptableObjects.Length];
 		
-		// ÃÊ±âÈ­ 
+		// ì´ˆê¸°í™” 
 		for(int index = 0 ; index < foods.Length; index++)
 		{
 			foods[index] = new Food();
 
 			foods[index].foodName			= foodScriptableObjects[index].foodName;
-			foods[index].cookingTimeLimit   = foodScriptableObjects[index].cookingTimeLimit;
+			foods[index].cookingTimeLimit           = foodScriptableObjects[index].cookingTimeLimit;
 			foods[index].foodSprite			= foodScriptableObjects[index].foodSprite;
 
-			// Àç·á ÃÊ±âÈ­
+			// ì¬ë£Œ ì´ˆê¸°í™”
 			int materialsArrayLength		= foodScriptableObjects[index].materials.Length;
 			foods[index].materials			= new Material[materialsArrayLength];
 
@@ -72,15 +72,15 @@ public class GameManager : Singleton<GameManager>
 	}
 
 	/// <summary>
-	/// ÇöÀç À½½Ä µ¥ÀÌÅÍ¸¦ ¹İÈ¯ÇÕ´Ï´Ù
+	/// í˜„ì¬ ìŒì‹ ë°ì´í„°ë¥¼ ë°˜í™˜í•©ë‹ˆë‹¤
 	/// </summary>
-	public Food	GetCurrentFood()
+	public Food GetCurrentFood()
 	{
 		return foods[currentFoodIndex];
 	}
 
 	/// <summary>
-	/// ÇöÀç À½½Ä Àç·á Áß ·£´ıÀ¸·Î Àç·á¸¦ ¹İÈ¯ÇÕ´Ï´Ù
+	/// í˜„ì¬ ìŒì‹ ì¬ë£Œ ì¤‘ ëœë¤ìœ¼ë¡œ ì¬ë£Œë¥¼ ë°˜í™˜í•©ë‹ˆë‹¤
 	/// </summary>
 	public Material GetRandomMaterial()
 	{
@@ -89,7 +89,7 @@ public class GameManager : Singleton<GameManager>
 	}
 
 	/// <summary>
-	/// ÇöÀç À½½Ä¿¡ ÇÊ¿äÇÑ Àç·á µ¥ÀÌÅÍ¸¦ ¹İÈ¯ÇÕ´Ï´Ù
+	/// í˜„ì¬ ìŒì‹ì— í•„ìš”í•œ ì¬ë£Œ ë°ì´í„°ë¥¼ ë°˜í™˜í•©ë‹ˆë‹¤
 	/// </summary>
 	public Material GetCurrentMaterial()
 	{
@@ -97,7 +97,7 @@ public class GameManager : Singleton<GameManager>
 	}
 
 	/// <summary>
-	/// ÇöÀç À½½Ä¿¡ ÇÊ¿äÇÑ Àç·áÀÇ ÀÌ¸§À» ¹İÈ¯ÇÕ´Ï´Ù
+	/// í˜„ì¬ ìŒì‹ì— í•„ìš”í•œ ì¬ë£Œì˜ ì´ë¦„ì„ ë°˜í™˜í•©ë‹ˆë‹¤
 	/// </summary>
 	public string GetCurrentMaterialName()
 	{
@@ -105,7 +105,7 @@ public class GameManager : Singleton<GameManager>
 	}
 
 	/// <summary>
-	/// ÇöÀç ¿ä¸®¿¡ ÇÊ¿äÇÑ ÃÑ Àç·á °³¼ö¸¦ ¹İÈ¯ÇÕ´Ï´Ù
+	/// í˜„ì¬ ìš”ë¦¬ì— í•„ìš”í•œ ì´ ì¬ë£Œ ê°œìˆ˜ë¥¼ ë°˜í™˜í•©ë‹ˆë‹¤
 	/// </summary>
 	public int GetCurrentFoodTotalMaterialCount()
 	{
@@ -121,20 +121,20 @@ public class GameManager : Singleton<GameManager>
 	}
 
 	/// <summary>
-	/// ÇöÀç À½½Ä¿¡ ÇÊ¿äÇÑ Àç·á¸¦ ¾òÀ¸¸é °¨¼Ò½ÃÅ²´Ù
+	/// í˜„ì¬ ìŒì‹ì— í•„ìš”í•œ ì¬ë£Œë¥¼ ì–»ìœ¼ë©´ ê°ì†Œì‹œí‚¨ë‹¤
 	/// </summary>
 	public void ReduceMaterialCount()
 	{
 		Food	 currentFood     = foods[currentFoodIndex];
 		Material currentMaterial = currentFood.materials[currentMaterialIndex];
 
-		// Àç·á °¨¼Ò 
+		// ì¬ë£Œ ê°ì†Œ 
 		currentMaterial.materialCount--;
 
-		// ÇöÀç ¾ò¾î¾ß ÇÒ Àç·á°¡ "0"ÀÏ ¶§
+		// í˜„ì¬ ì–»ì–´ì•¼ í•  ì¬ë£Œê°€ "0"ì¼ ë•Œ
 		if(currentMaterial.materialCount <= 0)
 		{
-			// ´õ ÀÌ»ó ¾ò¾î¾ß ÇÒ Àç·á°¡ ¾ø´Ù¸é
+			// ë” ì´ìƒ ì–»ì–´ì•¼ í•  ì¬ë£Œê°€ ì—†ë‹¤ë©´
 			if (currentMaterialIndex == currentFood.materials.Length - 1)
 			{
 				MoveNextFood();
@@ -146,7 +146,7 @@ public class GameManager : Singleton<GameManager>
 	}
 
 	/// <summary>
-	/// ´ÙÀ½ ¿ä¸®·Î ÀÌµ¿ÇÑ´Ù
+	/// ë‹¤ìŒ ìš”ë¦¬ë¡œ ì´ë™í•œë‹¤
 	/// </summary>
 	public void MoveNextFood()
 	{
@@ -154,7 +154,7 @@ public class GameManager : Singleton<GameManager>
 
 		if(currentFoodIndex == foods.Length - 1)
 		{
-			// ½ºÅ×ÀÌÁö Å¬¸®¾î
+			// ìŠ¤í…Œì´ì§€ í´ë¦¬ì–´
 			return;
 		}
 
@@ -164,9 +164,9 @@ public class GameManager : Singleton<GameManager>
 		foodPlate.Initilalize();
 	}
 
-	#region ÀÌÆåÆ® ¼ÒÈ¯ °ü·Ã ÇÔ¼ö
+	#region ì´í™íŠ¸ ì†Œí™˜ ê´€ë ¨ í•¨ìˆ˜
 	/// <summary>
-	/// ¿øÇÏ´Â À§Ä¡¿¡ Effect¸¦ »ı¼ºÇÕ´Ï´Ù
+	/// ì›í•˜ëŠ” ìœ„ì¹˜ì— Effectë¥¼ ìƒì„±í•©ë‹ˆë‹¤
 	/// </summary>
 	public GameObject SpawnEffect(EffectType effectType, Vector3 position)
 	{
@@ -193,7 +193,7 @@ public class GameManager : Singleton<GameManager>
 	}
 
 	/// <summary>
-	/// ¿øÇÏ´Â À§Ä¡¿¡ Effect¸¦ »ı¼ºÇÏ°í Áö¼Ó½Ã°£À» ¼³Á¤ÇÕ´Ï´Ù
+	/// ì›í•˜ëŠ” ìœ„ì¹˜ì— Effectë¥¼ ìƒì„±í•˜ê³  ì§€ì†ì‹œê°„ì„ ì„¤ì •í•©ë‹ˆë‹¤
 	/// </summary>
 	public GameObject SpawnEffect(EffectType effectType, Vector3 position, float duration)
 	{
