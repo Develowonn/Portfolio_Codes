@@ -4,15 +4,14 @@ using System.Collections.Generic;
 
 // # Unity
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 // # Project
 using Photon.Pun;
 using Photon.Realtime;
 using DG.Tweening;
-using UnityEngine.SceneManagement;
 
-
-// Todo. ½ºÅ©¸³Æ® Title SceneÀ¸·Î ÀÌµ¿½ÃÅ°±â 
+// Todo. ìŠ¤í¬ë¦½íŠ¸ Title Sceneìœ¼ë¡œ ì´ë™ì‹œí‚¤ê¸° 
 
 public class NewPhotonNetworkManager : MonoBehaviourPunCallbacks
 {
@@ -25,7 +24,7 @@ public class NewPhotonNetworkManager : MonoBehaviourPunCallbacks
     {
         Application.runInBackground = true;
 
-        // Æ÷Åæ ¾À ÀÚµ¿ µ¿±âÈ­
+        // í¬í†¤ ì”¬ ìë™ ë™ê¸°í™”
         PhotonNetwork.AutomaticallySyncScene = true;
 
         Screen.SetResolution(1280, 720, false);
@@ -42,20 +41,20 @@ public class NewPhotonNetworkManager : MonoBehaviourPunCallbacks
 
     private void LoadLobbyScene()
     {
-        // Æ÷Åæ ¼­¹ö ¿¬°á
+        // í¬í†¤ ì„œë²„ ì—°ê²°
         PhotonNetwork.ConnectUsingSettings();
     }
 
     public override void OnConnectedToMaster()
     {
-        Debug.Log("[SPEAK SPEAK] ¼­¹ö Á¢¼Ó ¿Ï·á");
+        Debug.Log("[SPEAK SPEAK] ì„œë²„ ì ‘ì† ì™„ë£Œ");
 
         PhotonNetwork.JoinLobby();
     }
 
     public override void OnJoinedLobby()
     {
-        Debug.Log("[SPEAK SPEAK] ·Îºñ Á¢¼Ó ¿Ï·á");
+        Debug.Log("[SPEAK SPEAK] ë¡œë¹„ ì ‘ì† ì™„ë£Œ");
 
         StopCoroutine(nameof(OnLoadingText));
 
