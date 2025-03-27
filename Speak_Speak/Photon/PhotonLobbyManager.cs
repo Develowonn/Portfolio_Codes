@@ -41,8 +41,6 @@ public class PhotonLobbyManager : MonoBehaviourPunCallbacks
     [SerializeField]
     private Button               roomLoginButton;
 
-    private List<RoomInfo>       roomList          = new List<RoomInfo>();
-
     private bool                 isReadyCreateRoom = true;
     private bool                 isTransitionEnd   = true;
 
@@ -132,11 +130,6 @@ public class PhotonLobbyManager : MonoBehaviourPunCallbacks
         roomLoginButton.interactable = true;
 
         isReadyCreateRoom = true;
-    }
-
-    public override void OnRoomListUpdate(List<RoomInfo> roomList)
-    {
-        this.roomList = roomList;
     }
 
     public override void OnJoinedLobby()
