@@ -15,7 +15,7 @@ using EasyTransition;
 public class PhotonLobbyManager : MonoBehaviourPunCallbacks
 {
     [SerializeField]
-    private NewPhotonRoomManager roomManager;
+    private PhotonRoomManager roomManager;
     [SerializeField]
     private TransitionSettings   circleWipe;
     [SerializeField]
@@ -144,9 +144,6 @@ public class PhotonLobbyManager : MonoBehaviourPunCallbacks
             TransitionManager.Instance().Transition(circleWipeOut, 0);
             TransitionManager.Instance().onTransitionCutPointReached += SetActiveRoomPanel;
         }
-
-        //SetLobbyPanelActive(false);
-        //SetRoomPanelActive(true);
 
         roomManager.SetUpRoomCode(PhotonNetwork.CurrentRoom.Name);
     }
