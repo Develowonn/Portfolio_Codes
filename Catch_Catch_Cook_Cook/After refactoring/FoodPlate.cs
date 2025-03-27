@@ -40,8 +40,8 @@ public class FoodPlate : MonoBehaviour
 		Food currentFood = GameManager.Instance.GetCurrentFood();
 
 		// 현재 음식에 맞게 Sprite 설정
-		spriteRenderer.sprite  = currentFood.foodSprite;
-		foodName               = currentFood.foodName;
+		spriteRenderer.sprite      = currentFood.foodSprite;
+		foodName                   = currentFood.foodName;
 		foodCompleteness	   = Constants.MaxFoodCompleteness;
 		cookingTimeLimit	   = currentFood.cookingTimeLimit;
 
