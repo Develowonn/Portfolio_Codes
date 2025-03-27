@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class TankMovement : MonoBehaviour
 {
-    private const float forwardRotationMultiplier  = -1.0f;  // ÀüÁø ½Ã ¹ÙÄû È¸Àü ¹æÇâ
-    private const float backwardRotationMultiplier =  1.0f;  // ÈÄÁø ½Ã ¹ÙÄû È¸Àü ¹æÇâ
+    private const float forwardRotationMultiplier  = -1.0f;  // ì „ì§„ ì‹œ ë°”í€´ íšŒì „ ë°©í–¥
+    private const float backwardRotationMultiplier =  1.0f;  // í›„ì§„ ì‹œ ë°”í€´ íšŒì „ ë°©í–¥
 
     [Header("Control Settings")]
     [SerializeField]
@@ -106,17 +106,5 @@ public class TankMovement : MonoBehaviour
                 }
             }
         }
-    }
-
-    public void CollideStructures()
-    {
-        isCrash            = true;
-        rigidbody.velocity = Vector3.zero;
-    }
-
-    public void AvoidStructures()
-    {
-        isCrash            = false;
-        rigidbody.velocity = Vector3.zero;
     }
 }   
