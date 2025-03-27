@@ -14,10 +14,10 @@ using EasyTransition;
 
 using TMPro;
 
-public class NewPhotonRoomManager : MonoBehaviourPunCallbacks
+public class PhotonRoomManager : MonoBehaviourPunCallbacks
 {
     [SerializeField]
-    private NewPhotonLobbyManager lobbyManager;
+    private PhotonLobbyManager lobbyManager;
     [SerializeField]
     private RoleSelector          roleSelector;
     [SerializeField]
@@ -112,7 +112,7 @@ public class NewPhotonRoomManager : MonoBehaviourPunCallbacks
         }
     }
 
-    public void SetUpRoomCode(string roomCode)
+    public void SetRoomCode(string roomCode)
     {
         roomCodeText.text = string.Empty;
         roomCodeText.text = roomCode;
@@ -180,13 +180,9 @@ public class NewPhotonRoomManager : MonoBehaviourPunCallbacks
         PhotonChatManager.instance.Initialize();
     }
 
-    public override void OnLeftRoom()
-    {
-    }
-
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
-        PhotonChatManager.instance.ChatClient.PublishMessage(PhotonNetwork.CurrentRoom.Name, $"<color=#FF0000>{otherPlayer.NickName}´ÔÀÌ ¹æÀ» ³ª°¡¼Ì½À´Ï´Ù.");
+        PhotonChatManager.instance.ChatClient.PublishMessage(PhotonNetwork.CurrentRoom.Name, $"<color=#FF0000>{otherPlayer.NickName}Â´Ã”Ã€ÃŒ Â¹Ã¦Ã€Â» Â³ÂªÂ°Â¡Â¼ÃŒÂ½Ã€Â´ÃÂ´Ã™.");
 
         int roleID = 0;
 
