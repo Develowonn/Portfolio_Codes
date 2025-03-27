@@ -12,7 +12,7 @@ using Photon.Pun;
 using Photon.Realtime;
 using EasyTransition;
 
-public class NewPhotonLobbyManager : MonoBehaviourPunCallbacks
+public class PhotonLobbyManager : MonoBehaviourPunCallbacks
 {
     [SerializeField]
     private NewPhotonRoomManager roomManager;
@@ -23,28 +23,28 @@ public class NewPhotonLobbyManager : MonoBehaviourPunCallbacks
 
     [Header("Panel")]
     [SerializeField]
-    private GameObject      lobbyPanel;
+    private GameObject           lobbyPanel;
     [SerializeField]
-    private GameObject[]    roomPanel;
+    private GameObject[]         roomPanel;
 
     [Header("InputField")]
     [SerializeField]
-    private TMP_InputField  roomCodeInputField;
+    private TMP_InputField       roomCodeInputField;
     [SerializeField]
-    private TMP_InputField  nickNameInputField;
+    private TMP_InputField       nickNameInputField;
 
     [Header("Text")]
     [SerializeField]
-    private TMP_Text        loginButtonText;
+    private TMP_Text             loginButtonText;
 
     [Header("Button")]
     [SerializeField]
-    private Button          roomLoginButton;
+    private Button               roomLoginButton;
 
-    private List<RoomInfo>  roomList          = new List<RoomInfo>();
+    private List<RoomInfo>       roomList          = new List<RoomInfo>();
 
-    private bool            isReadyCreateRoom = true;
-    public bool            isTransitionEnd   = true;
+    private bool                 isReadyCreateRoom = true;
+    private bool                 isTransitionEnd   = true;
 
     private void Start()
     {
@@ -77,7 +77,7 @@ public class NewPhotonLobbyManager : MonoBehaviourPunCallbacks
     {
         if (!isReadyCreateRoom) return;
 
-        Debug.Log("Å¬¸¯");
+        Debug.Log("í´ë¦­");
 
         if (nickNameInputField.text == string.Empty)
         {
@@ -85,10 +85,10 @@ public class NewPhotonLobbyManager : MonoBehaviourPunCallbacks
             return;
         }
 
-        // ´Ğ³×ÀÓ ¼³Á¤
+        // ë‹‰ë„¤ì„ ì„¤ì •
         PhotonNetwork.NickName = nickNameInputField.text;
         
-        // ·ë ÄÚµå¸¦ ÀÔ·ÂÇÏÁö ¾Ê¾ÒÀ» ¶§ ¹æ»ı¼º
+        // ë£¸ ì½”ë“œë¥¼ ì…ë ¥í•˜ì§€ ì•Šì•˜ì„ ë•Œ ë°©ìƒì„±
         if(roomCodeInputField.text == string.Empty)
         {
             RoomOptions roomOptions = new RoomOptions
@@ -110,7 +110,7 @@ public class NewPhotonLobbyManager : MonoBehaviourPunCallbacks
 
             isReadyCreateRoom = false;
         }
-        // ·ë ÄÚµå¸¦ ÀÔ·ÂÇßÀ» ¶§ ¹æ °¡ÀÔ 
+        // ë£¸ ì½”ë“œë¥¼ ì…ë ¥í–ˆì„ ë•Œ ë°© ê°€ì… 
         else
         {
             string roomCode = roomCodeInputField.text;
@@ -141,7 +141,7 @@ public class NewPhotonLobbyManager : MonoBehaviourPunCallbacks
 
     public override void OnJoinedLobby()
     {
-        Debug.Log("[Speak Speak] ·Îºñ ÀÔÀå ¼º°ø");
+        Debug.Log("[Speak Speak] ë¡œë¹„ ì…ì¥ ì„±ê³µ");
     }
 
     public override void OnJoinedRoom()
@@ -177,12 +177,12 @@ public class NewPhotonLobbyManager : MonoBehaviourPunCallbacks
         if (returnCode == (short)Photon.Realtime.ErrorCode.GameFull)
         {
             ErrorManager.Instance.InvokeErrorMessage("Room Full !!!!");
-            Debug.Log("[Speak Speak] ¹æ ÀÔÀå ½ÇÆĞ: ¹æÀÌ ²Ë Ã¡½À´Ï´Ù.");
+            Debug.Log("[Speak Speak] ë°© ì…ì¥ ì‹¤íŒ¨: ë°©ì´ ê½‰ ì°¼ìŠµë‹ˆë‹¤.");
         }
         else
         {
             ErrorManager.Instance.InvokeErrorMessage("Room Code ERROR !!!!");
-            Debug.Log("[Speak Speak] ¹æ ÀÔÀå ½ÇÆĞ");
+            Debug.Log("[Speak Speak] ë°© ì…ì¥ ì‹¤íŒ¨");
         }
     }
 
