@@ -4,14 +4,11 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-
 // # Unity
 using UnityEngine;
 using UnityEngine.InputSystem.Layouts;
 using UnityEngine.Rendering;
 using UnityEngine.UIElements;
-
-
 
 // # Static
 using static BlockConstants;
@@ -19,8 +16,6 @@ using static BlockConstants;
 public class MapSettingManager : MonoBehaviour
 {
 	public static MapSettingManager Instance { get; private set; }
-
-	//public ChunkSync chunkSync;             // Ã»Å© °øÀ¯¸¦ À§ÇÑ Å¬·¡½º
 
 	private Map map;
 
@@ -34,74 +29,74 @@ public class MapSettingManager : MonoBehaviour
 
 	[Header("[# Abuot Creating Map]")]
 	[SerializeField]
-	private GameObject  chunkPrefab;
+	private GameObject     chunkPrefab;
 	[SerializeField]
-	private Material    mapGroundMaterial;			  // ¸Ê ÅØ½ºÃÄ ¾ÆÆ²¶ó½º 
+	private Material       mapGroundMaterial;	      // ë§µ í…ìŠ¤ì³ ì•„í‹€ë¼ìŠ¤ 
 	[SerializeField]
-	private Material    mapWaterMaterial;             // ¸Ê ÅØ½ºÃÄ ¾ÆÆ²¶ó½º 
+	private Material       mapWaterMaterial;              // ë§µ í…ìŠ¤ì³ ì•„í‹€ë¼ìŠ¤ 
 
 	[Header("[# Abuot Map Size ]")]
 	[SerializeField]
-	private int		    mapSizeInChunks;
+	private int	       mapSizeInChunks;
 
 	[Header("[# About Setting Noise ]")]
 	[SerializeField]
-	private float		scale;                      //  ÆŞ¸° ³ëÀÌÁîÀÇ Å©±â(scale)      
+	private float	       scale;                         //  í„ë¦° ë…¸ì´ì¦ˆì˜ í¬ê¸°(scale)      
 	[SerializeField, Range(0, 2000)]
-	private int			seed;                       //  ·£´ı ½Ãµå(seed) °ª
+	private int	       seed;                          //  ëœë¤ ì‹œë“œ(seed) ê°’
 
 	[Header("[# About Data ]")]
 	[SerializeField]
-	private	BlockDataConfig[]		blockDataConfig;          // °°Àº Å¸ÀÔÀÇ ºí·° µ¥ÀÌÅÍ¸¦ ´ã°í ÀÖÁö¸¸, ÅØ½ºÃÄ¸¸ ´Ù¸§ 
+	private	BlockDataConfig[]   blockDataConfig;          // ê°™ì€ íƒ€ì…ì˜ ë¸”ëŸ­ ë°ì´í„°ë¥¼ ë‹´ê³  ìˆì§€ë§Œ, í…ìŠ¤ì³ë§Œ ë‹¤ë¦„ 
 	[SerializeField]
-	private	BlockTextureData[]  blockTextureDataList;     // °°Àº Å¸ÀÔÀÇ ºí·° µ¥ÀÌÅÍ¸¦ ´ã°í ÀÖÁö¸¸, ÅØ½ºÃÄ¸¸ ´Ù¸§ 
+	private	BlockTextureData[]  blockTextureDataList;     // ê°™ì€ íƒ€ì…ì˜ ë¸”ëŸ­ ë°ì´í„°ë¥¼ ë‹´ê³  ìˆì§€ë§Œ, í…ìŠ¤ì³ë§Œ ë‹¤ë¦„ 
 	[SerializeField]
-	private BlockWeightData[]		blockWeightConfig;
+	private BlockWeightData[]   blockWeightConfig;
 
 	[Header("[# About Water Setting]")]
 	[SerializeField]
-	private float	  waterChunkObjectYScale;          //¹°ÀÇ ÇØ¼ö¸é ³ôÀÌ
-    [SerializeField]
-    private int		  waterHeight;                     // ¹° ³ôÀÌ
+	private float	            waterChunkObjectYScale;          //ë¬¼ì˜ í•´ìˆ˜ë©´ ë†’ì´
+        [SerializeField]
+        private int		    waterHeight;                     // ë¬¼ ë†’ì´
 
 	[Header("[# ETC]")]
 	[SerializeField]
-	private Transform player;
+	private Transform 	    player;
 	[SerializeField]
-	private int		  viewDistanceInChunks;
+	private int       	    viewDistanceInChunks;
 
-    #region ÇÁ·ÎÆÛÆ¼ ( Get ±â´É )
-    // # ÇÁ·ÎÆÛÆ¼ ( Get ±â´É )
-    public Map		 Map => map;
+        #region í”„ë¡œí¼í‹° ( Get ê¸°ëŠ¥ )
+        // # í”„ë¡œí¼í‹° ( Get ê¸°ëŠ¥ )
+        public Map		Map => map;
 
-	public Transform WaterChunkParent => waterChunkParent;
-	public Transform GroundChunkParent => groundChunkParent;
+	public Transform 	WaterChunkParent  => waterChunkParent;
+	public Transform 	GroundChunkParent => groundChunkParent;
 
-	public Material  MapGroundMaterial => mapGroundMaterial;
-	public Material  MapWaterMaterial => mapWaterMaterial;
+	public Material 	MapGroundMaterial => mapGroundMaterial;
+	public Material  	MapWaterMaterial  => mapWaterMaterial;
 
-	public int		 MapSizeInChunks => mapSizeInChunks;
+	public int		MapSizeInChunks   => mapSizeInChunks;
 
-	public int		 WaterHeight => waterHeight;
+	public int		WaterHeight       => waterHeight;
 
-	public float	 Scale => scale;
-	public int		 Seed => seed;
+	public float	        Scale 		  => scale;
+	public int		Seed 		  => seed;
 
-	public float	 ParentChunkYPos        => parentChunkYPos;
-	public float	 WaterChunkObjectYScale => waterChunkObjectYScale;
-	public int		 ViewDistanceInChunks   => viewDistanceInChunks;
+	public float	 	ParentChunkYPos         => parentChunkYPos;
+	public float	 	WaterChunkObjectYScale  => waterChunkObjectYScale;
+	public int		ViewDistanceInChunks    => viewDistanceInChunks;
 
-	public Transform Player					=> player;
+	public Transform        Player			=> player;
 
 
-    public BlockDataConfig[] BlockDataConfig => blockDataConfig;
-    #endregion
+        public BlockDataConfig[] BlockDataConfig => blockDataConfig;
+        #endregion
 
-    private void Awake()
+    	private void Awake()
 	{
 		Instance = this;
 
-		// ºí·° µ¥ÀÌÅÍ ID ¼³Á¤ 
+		// ë¸”ëŸ­ ë°ì´í„° ID ì„¤ì • 
 		foreach (BlockDataConfig blockDataList in blockDataConfig)
 		{
 			for (int index = 0; index < blockDataList.blockDatas.Length; index++)
@@ -119,65 +114,65 @@ public class MapSettingManager : MonoBehaviour
 		InitializeChunk();
 	}
 
-    private void Update()
-    {
+    	private void Update()
+     	{
 		map.CheckAndUpdateChunks();
 	}
 
-    /// <summary>
-    /// Ã»Å© ÇÁ¸®ÆÕÀ» »ı¼ºÇØ ¹İÈ¯ÇÕ´Ï´Ù.
-    /// </summary>
-    public GameObject InstantiateChunk()
+    	/// <summary>
+    	/// ì²­í¬ í”„ë¦¬íŒ¹ì„ ìƒì„±í•´ ë°˜í™˜í•©ë‹ˆë‹¤.
+    	/// </summary>
+    	public GameObject InstantiateChunk()
 	{
 		return Instantiate(chunkPrefab);
 	}
 
-    /// <summary>
-    /// ¶¥ Ã»Å©ÀÇ À§Ä¡¿Í ¹° Ã»Å©ÀÇ À§Ä¡ ¹× ½ºÄÉÀÏÀ» ÃÊ±âÈ­ÇÕ´Ï´Ù.
-    /// </summary>
-    private void InitializeChunk()
+    	/// <summary>
+    	/// ë•… ì²­í¬ì˜ ìœ„ì¹˜ì™€ ë¬¼ ì²­í¬ì˜ ìœ„ì¹˜ ë° ìŠ¤ì¼€ì¼ì„ ì´ˆê¸°í™”í•©ë‹ˆë‹¤.
+    	/// </summary>
+    	private void InitializeChunk()
 	{
-        Vector3 mapPos = Vector3.up * parentChunkYPos;
-        GroundChunkParent.transform.position = mapPos;
+        	Vector3 mapPos = Vector3.up * parentChunkYPos;
+        	GroundChunkParent.transform.position = mapPos;
 
-        Vector3 mapPos1 = Vector3.up * parentChunkYPos;
-        WaterChunkParent.transform.position = mapPos1;
-        WaterChunkParent.transform.localScale = new Vector3(1, WaterChunkObjectYScale, 1);
-    }
+        	Vector3 mapPos1 = Vector3.up * parentChunkYPos;
+        	WaterChunkParent.transform.position = mapPos1;
+        	WaterChunkParent.transform.localScale = new Vector3(1, WaterChunkObjectYScale, 1);
+        }
 
 	/// <summary>
-	/// ÁÖ¾îÁø ÁÂÇ¥¿¡¼­ ³ëÀÌÁî °ªÀ» ±â¹İÀ¸·Î ºí·° µ¥ÀÌÅÍ¸¦ ¹İÈ¯ÇÕ´Ï´Ù.
+	/// ì£¼ì–´ì§„ ì¢Œí‘œì—ì„œ ë…¸ì´ì¦ˆ ê°’ì„ ê¸°ë°˜ìœ¼ë¡œ ë¸”ëŸ­ ë°ì´í„°ë¥¼ ë°˜í™˜í•©ë‹ˆë‹¤.
 	/// </summary>
 	public BlockData GetBlockTypeWithNoise(Vector2 coord)
 	{
 		int x = Mathf.FloorToInt(coord.x);
 		int z = Mathf.FloorToInt(coord.y);
 
-        float maxAmplitude = blockWeightConfig.Max(config => config.threshold) + 1;
-        float noiseValue   = PerlinNoise.GetBlockFromNoise(new Vector2(x, z), maxAmplitude, scale, seed);
+        	float maxAmplitude = blockWeightConfig.Max(config => config.threshold) + 1;
+        	float noiseValue   = PerlinNoise.GetBlockFromNoise(new Vector2(x, z), maxAmplitude, scale, seed);
 
-        foreach (var config in blockWeightConfig)
-        {
-            if (noiseValue < config.threshold)
-            {
-                return FindBlockType(config.id);
-            }
-        }
+        	foreach (var config in blockWeightConfig)
+        	{
+            		if (noiseValue < config.threshold)
+            		{
+               			return FindBlockType(config.id);
+            		}
+        	}
 
 		return FindBlockType(Snow);
     }
 
     /// <summary>
-    /// ÁÖ¾îÁø ºí·° µ¥ÀÌÅÍ ¹è¿­¿¡¼­ °¡ÁßÄ¡¸¦ ±â¹İÀ¸·Î ·£´ıÇÑ ºí·°À» ¹İÈ¯ÇÕ´Ï´Ù.
+    /// ì£¼ì–´ì§„ ë¸”ëŸ­ ë°ì´í„° ë°°ì—´ì—ì„œ ê°€ì¤‘ì¹˜ë¥¼ ê¸°ë°˜ìœ¼ë¡œ ëœë¤í•œ ë¸”ëŸ­ì„ ë°˜í™˜í•©ë‹ˆë‹¤.
     /// </summary>
     private BlockData GetBlockTextureWeightRandom(BlockData[] blockDatas)
-	{
+    {
 		if (blockDatas.Length == 0)
 		{
 			return null;
 		}
 
-		// ¸ğµç °¡ÁßÄ¡¸¦ ´õÇÏ¿© ÃÑÇÕ ±¸ÇÏ±â
+		// ëª¨ë“  ê°€ì¤‘ì¹˜ë¥¼ ë”í•˜ì—¬ ì´í•© êµ¬í•˜ê¸°
 		float totalWeight = 0.0f;
 		foreach (BlockData blockData in blockDatas)
 		{
@@ -186,13 +181,13 @@ public class MapSettingManager : MonoBehaviour
 
 		if (totalWeight == 0.0f)
 		{
-			return blockDatas[0]; // Ã¹ ¹øÂ° µ¥ÀÌÅÍ¸¦ ¹İÈ¯
+			return blockDatas[0]; // ì²« ë²ˆì§¸ ë°ì´í„°ë¥¼ ë°˜í™˜
 		}
 
-		// 0ºÎÅÍ ÃÑÇÕ »çÀÌÀÇ ·£´ı °ªÀ» »ı¼º
+		// 0ë¶€í„° ì´í•© ì‚¬ì´ì˜ ëœë¤ ê°’ì„ ìƒì„±
 		float randomValue = UnityEngine.Random.value * totalWeight;
 
-		// ·£´ı °ªÀÌ ¾î´À ¹üÀ§¿¡ ¼ÓÇÏ´ÂÁö È®ÀÎÇÏ¿© µ¥ÀÌÅÍ ¼±ÅÃ
+		// ëœë¤ ê°’ì´ ì–´ëŠ ë²”ìœ„ì— ì†í•˜ëŠ”ì§€ í™•ì¸í•˜ì—¬ ë°ì´í„° ì„ íƒ
 		foreach (var weightedBlockData in blockDatas)
 		{
 			randomValue -= weightedBlockData.weight;
@@ -203,12 +198,12 @@ public class MapSettingManager : MonoBehaviour
 			}
 		}
 
-		// ÇØ´çµÇÁö ¾ÊÀº °æ¿ì ¸¶Áö¸· µ¥ÀÌÅÍ ¹İÈ¯
+		// í•´ë‹¹ë˜ì§€ ì•Šì€ ê²½ìš° ë§ˆì§€ë§‰ ë°ì´í„° ë°˜í™˜
 		return blockDatas[blockDatas.Length - 1];
-	}
+       }
 
 	/// <summary>
-	/// ºí·° ID¿¡ ÇØ´çÇÏ´Â ºí·° µ¥ÀÌÅÍ¸¦ °Ë»öÇØ ¹İÈ¯ÇÕ´Ï´Ù.
+	/// ë¸”ëŸ­ IDì— í•´ë‹¹í•˜ëŠ” ë¸”ëŸ­ ë°ì´í„°ë¥¼ ê²€ìƒ‰í•´ ë°˜í™˜í•©ë‹ˆë‹¤.
 	/// </summary>
 	public BlockData FindBlockType(string blockID)
 	{
@@ -225,10 +220,10 @@ public class MapSettingManager : MonoBehaviour
 	}
 
     /// <summary>
-    /// ÁÖ¾îÁø ºí·Ï ID¿¡ ÇØ´çÇÏ´Â ÅØ½ºÃ³¸¦ Ã£°í, ÁÖ¾îÁø ÀÎµ¦½º¿¡ ÇØ´çÇÏ´Â ÅØ½ºÃ³¸¦ ¹İÈ¯ÇÕ´Ï´Ù.
+    /// ì£¼ì–´ì§„ ë¸”ë¡ IDì— í•´ë‹¹í•˜ëŠ” í…ìŠ¤ì²˜ë¥¼ ì°¾ê³ , ì£¼ì–´ì§„ ì¸ë±ìŠ¤ì— í•´ë‹¹í•˜ëŠ” í…ìŠ¤ì²˜ë¥¼ ë°˜í™˜í•©ë‹ˆë‹¤.
     /// </summary>
     public int FindTexture(string blockID, int index = 0)
-	{
+    {
 		foreach (var textureinlist in blockTextureDataList)
 		{
 			if (textureinlist.id == blockID)
@@ -237,5 +232,5 @@ public class MapSettingManager : MonoBehaviour
 			}
 		}
 		return 0;
-	}
-}
+   }
+ }
