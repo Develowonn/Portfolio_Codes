@@ -30,8 +30,8 @@
 
 ## 🛠 Skills  
 <p align="center">
-  <img src="https://velog.velcdn.com/images/txmay/post/6a78bbca-7d2d-43cf-9aeb-3336837f4e59/image.png" alt="Unity" width="100">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/4/4f/Csharp_Logo.png" alt="C#" width="100">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Unity_Technologies_logo.svg" alt="Unity" width="80">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/4/4f/Csharp_Logo.png" alt="C#" width="80">
 </p>
 
 ---
