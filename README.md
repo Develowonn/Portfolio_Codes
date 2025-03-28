@@ -28,14 +28,6 @@
 
 ---
 
-## 🛠 Skills  
-<p align="center">
-  <img src="https://unity.com/_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Ffuvbjjlp%2Fproduction%2F6d1df49565a2ad20ffa8386f1465ba52039133e3-1920x1080.png&w=3840&q=75" alt="Unity" width="80">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/4/4f/Csharp_Logo.png" alt="C#" width="80">
-</p>
-
----
-
 ## 🚀 More About Me  
 🌱 현재 **유니티 엔진을 활용한 클라이언트 개발**을 공부하고 있습니다.  
 💡 협업과 성장에 가치를 두며, 새로운 기술을 배우고 적용하는 것을 좋아합니다.  
