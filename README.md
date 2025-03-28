@@ -30,7 +30,7 @@
 
 ## 🛠 Skills  
 <p align="center">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Unity_Technologies_logo.svg" alt="Unity" width="80">
+  <img src="https://unity.com/_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Ffuvbjjlp%2Fproduction%2F6d1df49565a2ad20ffa8386f1465ba52039133e3-1920x1080.png&w=3840&q=75" alt="Unity" width="80">
   <img src="https://upload.wikimedia.org/wikipedia/commons/4/4f/Csharp_Logo.png" alt="C#" width="80">
 </p>
 
