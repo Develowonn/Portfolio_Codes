@@ -140,7 +140,7 @@ public class RoleSelector : MonoBehaviour
         }
     }
 
-    public void UpdateRoleMyRole(bool isUsing)
+    public void UpdateMyRole(bool isUsing)
     {
         if (myRoleID == -1) return;
 
@@ -169,14 +169,14 @@ public class RoleSelector : MonoBehaviour
         photonRoomManager.UpdateGameReady();
     }
 
-    private void UpdateLighting(int roleID, bool isUsing)
-    {
-        lights[roleID].SetActive(isUsing);
-    }
-
     [PunRPC]
     private void UpdateNicknameRpc(int roleID, string nickname)
     {
         nickNameTexts[roleID].text = nickname;
+    }
+
+    private void UpdateLighting(int roleID, bool isUsing)
+    {
+        lights[roleID].SetActive(isUsing);
     }
 }
