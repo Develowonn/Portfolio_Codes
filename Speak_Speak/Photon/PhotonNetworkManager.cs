@@ -39,7 +39,7 @@ public class NewPhotonNetworkManager : MonoBehaviourPunCallbacks
         StartCoroutine(nameof(OnLoadingText));
     }
 
-    private void LoadLobbyScene()
+    private void ConnectPhotonServer()
     {
         // 포톤 서버 연결
         PhotonNetwork.ConnectUsingSettings();
@@ -69,7 +69,7 @@ public class NewPhotonNetworkManager : MonoBehaviourPunCallbacks
         sequence.Append(logo.DOScale(1.3f, 0.6f));
         sequence.Append(logo.DOScale(1.0f, 0.6f));
 
-        sequence.Play().OnComplete(LoadLobbyScene);
+        sequence.Play().OnComplete(ConnectPhotonServer);
     }
 
     private IEnumerator OnLoadingText()
