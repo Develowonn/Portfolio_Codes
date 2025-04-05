@@ -8,7 +8,7 @@ using UnityEngine.LightTransport;
 using UnityEngine.SocialPlatforms;
 using static BlockConstants;
 
-[System.Serializable]
+[System.Serializable] 
 public class Chunk
 {
 	// #  청크 공유를 위한 클래스
