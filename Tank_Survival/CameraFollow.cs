@@ -13,7 +13,7 @@ public class CameraFollow : MonoBehaviour
 
     private Vector3     currentVelocity;
 
-    private void Start()
+    private void Start() 
     {
         currentVelocity = Vector3.zero;
     }
