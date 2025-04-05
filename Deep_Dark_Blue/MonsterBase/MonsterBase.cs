@@ -4,7 +4,7 @@ using System.Collections;
 
 using UnityEngine;
 
-public abstract class MonsterBase : MonoBehaviour
+public abstract class MonsterBase : MonoBehaviour 
 {
     [SerializeField]
     protected MonsterState  state;
