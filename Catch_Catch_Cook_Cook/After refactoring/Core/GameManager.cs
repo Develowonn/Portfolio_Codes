@@ -137,7 +137,7 @@ public class GameManager : Singleton<GameManager>
 			// 더 이상 얻어야 할 재료가 없다면
 			if (currentMaterialIndex == currentFood.materials.Length - 1)
 			{
-				MoveNextFood();
+				NextFoodStep();
 				return;
 			}
 
@@ -148,7 +148,7 @@ public class GameManager : Singleton<GameManager>
 	/// <summary>
 	/// 다음 요리로 이동한다
 	/// </summary>
-	public void MoveNextFood()
+	public void NextFoodStep()
 	{
 		MaterialPlatePoolManager.Instance.ReturnAllPlate();
 
