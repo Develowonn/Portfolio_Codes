@@ -27,14 +27,12 @@ public class BlockData
 
 
 	[HideInInspector]
-	public string id;                 // ºí·°¿¡ ´ëÇÑ Á¤ÀÇ
-	public float weight;             // °¡ÁßÄ¡
+	public string id;                 // ë¸”ëŸ­ì— ëŒ€í•œ ì •ì˜
+	public float  weight;             // ê°€ì¤‘ì¹˜
 
 	[Header("Bool Setting")]
 	public bool isSoild;
-	public bool isDestroy;            // ºí·° ÆÄ±« °¡´É ¿©ºÎ 
-	public bool isGgongGgongActivate; // ²Ç²ÇÀÌÀåÄ¡ È°¼ºÈ­ ¿©ºÎ
-	public bool isDisposable;         // ÀÏÈ¸¿ë ¿©ºÎ
+	public bool isDestroy;            // ë¸”ëŸ­ íŒŒê´´ ê°€ëŠ¥ ì—¬ë¶€ 
 
 	[Header("Texture Values")]
 	public string backFaceTexture;
