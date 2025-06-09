@@ -13,7 +13,7 @@
 
 ## 📂 작업 중인 레포지토리
 
-[👉 GitHub에서 보기](https://github.com/Develowonn/Portfolio_Codes)
+[👉 GitHub에서 보기](https://github.com/Develowonn/Island_Generator)
 
 ## 📝 작업 기록 블로그
 
