@@ -18,4 +18,4 @@
 ## 📝 작업 기록 블로그
 
 개선하면서 느낀 점이나 배운 것도 블로그에 조금씩 적고 있어요.  
-[👉 개발 일지 보러 가기](https://developwon.tistory.com/)
+[👉 개발 일지 보러 가기](https://developwon.tistory.com/category/UNITY/Last%20Of%20Penguin)
