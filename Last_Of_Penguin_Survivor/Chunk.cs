@@ -339,7 +339,7 @@ public class Chunk
     /// </summary>
 private bool IsVoxelInChunk(int x, int y, int z)
 {
-        if (x < 0 || x > ChunkData.ChunkWidthValue - 1
+        if   (x < 0 || x > ChunkData.ChunkWidthValue  - 1
            || y < 0 || y > ChunkData.ChunkHeightValue - 1
            || z < 0 || z > ChunkData.ChunkLengthValue - 1)
             return false;
