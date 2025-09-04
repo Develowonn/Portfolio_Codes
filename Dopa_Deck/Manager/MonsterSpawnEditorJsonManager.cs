@@ -10,7 +10,7 @@ using UnityEditor;
 
 public class MonsterSpawnEditorJsonManager : MonoBehaviour
 {
-	public static EnemySpawnEditorJsonManager Instance;
+	public static MonsterSpawnEditorJsonManager Instance;
 
 	private void Awake()
 	{
