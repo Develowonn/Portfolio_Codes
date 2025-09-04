@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEditor;
 #endif
 
-public class EnemySpawnEditorJsonManager : MonoBehaviour
+public class MonsterSpawnEditorJsonManager : MonoBehaviour
 {
 	public static EnemySpawnEditorJsonManager Instance;
 
@@ -36,7 +36,7 @@ public class EnemySpawnEditorJsonManager : MonoBehaviour
 
 		if (jsonText == null)
 		{
-			Debug.Log($"{fileName} FileÀÌ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
+			Debug.Log($"{fileName} FileÃ€ÃŒ ÃÂ¸Ã€Ã§Ã‡ÃÃÃ¶ Â¾ÃŠÂ½Ã€Â´ÃÂ´Ã™.");
 			return null;
 		}
 
